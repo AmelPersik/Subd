@@ -11,7 +11,7 @@
     * Журналирование действий пользователя.
 # 3. 
 1. Пользователь (Users) - представляет собой основную сущность, хранящую информацию о зарегистрированных пользователях.
-     - ID(PK): Уникальный идентификатор пользователя.
+     - user_id(PK): Уникальный идентификатор пользователя.
      - user_fio: Информация о имени, фамилии пользователя.
      - user_login: Уникальный логин пользователя, используется для аутентификации.
      - user_password: Хешированный пароль пользователя для безопасной аутентификации.
@@ -22,7 +22,6 @@
      - deliv_id(FK): Пользователь может выбрать один из пунктов доставки из "Пункты выдачи".
        
 2. Роль (Roles)
-   - Поля:
      - role_id(PK): Уникальный идентификатор роли.
      - role_name: Название роли, например, "администратор", "пользователь", "Поставщик".
        
@@ -80,3 +79,22 @@
       - prod_discription: описание компании производителя
       - prod_contacts: контакты производителя
       - prod_id(FK): производимые товары
+
+#4 Ограничения
+1. **Table Users**:
+   *user_id* INT PRIMARY KEY AUTO_INCREMENT
+   *user_fio* VARCHAR(60) NOT NULL
+   *user_login* VARCHAR(30) NOT NULL
+   *user_password* VARCHAR(10) NOT NULL
+   *user_email* VARCHAR(30) NOT NULL
+   *adress_id*
+   *role_id* INT FOREIGN KEY REFERENCES Roles (role_id)
+   *card_id* INT FOREIGN KEY REFERENCES Cards(card_id)
+   *deliv_id* INT FOREIGN KEY REFERENCES Delivery(deliv_id)
+2. **Table Roles**:
+   *role_id* INT PRIMARY KEY AUTO_INCREMENT
+   *role_name* VARCHAR(30) NOT NULL
+3.**Category**
+    - *cat_id* INT PRIMARY KEY AUTO_INCREMENT
+    - *cat_name* VARCHAR(30) NOT NULL
+       
