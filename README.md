@@ -18,7 +18,6 @@
     - adress_id: хранит информацию о стране и городе проживания пользователя
     - role_id(FK): Многие пользователи могут иметь множество ролей через сущность "Роль пользователя". 
     - card_id(FK): Пользователь может привязать банковскую карту для оплаты покупок онлайн. 
-    
        
 2. ***Роль (Roles)***
     - role_id(PK): Уникальный идентификатор роли.
@@ -69,11 +68,11 @@
     - deliv_id(PK): Уникальный идентификатор
     - deliv_status: Статус заказа (оформлен/собран/в пути/доставлен)
       
-11. ***Производитель продукта (Producer)*** - хранит информацию о производителе товара.
-    - producer_id(PK): уникальный id производителя
-    - prod_name: имя производителя
-    - prod_discription: описание компании производителя
-    - prod_contacts: контакты производителя
+11. ***Производитель продукта (Provider)*** - хранит информацию о производителе товара.
+    - provider_id(PK): уникальный id производителя
+    - prov_name: имя производителя
+    - prov_discription: описание компании производителя
+    - prov_contacts: контакты производителя
     - product_id(FK): производимые товары
 
 # 4 Ограничения
@@ -104,7 +103,7 @@
    - *product_name* VARCHAR(30) NOT NULL
    - *amount* INT  
    - *product_cost* DOUBLE NOT NULL
-   - *discription* TEXT NOT NULL
+   - *discription* VARCHAR(200) NOT NULL
    - *category_id* INT FOREIGN KEY Category (cat_id)
      
 6. **Table OrderProduct**:
@@ -132,14 +131,14 @@
    - *deliv_status* VARCHAR(40)
   
 10. **PickUp_point**:
-    - *point_id* INT PRIMARY KEY AUTO_INCREMENT
-    - *point_adress* VARCHAR(50)
-    - *point_worktime* TIME
+   - *point_id* INT PRIMARY KEY AUTO_INCREMENT
+   - *point_adress* VARCHAR(50)
+   - *point_worktime* TIME
      
 11. **Table Producer**:
    - *producer_id* INT PRIMARY KEY AUTO_INCREMENT
    - *prod_name* VARCHAR(30)
-   - *prod_discription* TEXT
+   - *prod_discription* VARCHAR(200) NOT NULL
    - *prod_contacts* VARCHAR(30)
    - *product_id* INT FOREIGN KEY Product(product_id)
    
